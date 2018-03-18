@@ -32,27 +32,24 @@ public class BuscadorDePalabras {
     public static void main(String[] args) throws IOException {
          File dir = new File(args[0]);
          System.out.println("La ruta es: " + args[0] + " \n");
+         
         /*
             dir = directorio donde se encuentran todos pdf que se desean buscar.
             es el primer elemento del string args.
         */
         
         String[] archivos = dir.list();
+        System.out.println("Numero de archivos: " + archivos.length );
         /*
             crea un array con todos los archivos pdf dentro del directorio indicado
             con "dir" (el cual se paso por parametro.).
         */
-        
+        int numero = 1;
         java.util.List<String> nombreArchivo = new LinkedList();
         if(archivos != null){
              for (String nombre : archivos) {
-                 /*
-                 recorre todos los archivos contenidos en dir.
-                  */
-                 System.out.println("el nombre del archivo es: " + nombre + "\n");
-                 /*
-                 almacena el nombre del archivo pdf.
-                  */
+                 System.out.println(numero + " de " + archivos.length);
+                 numero++;
                  PDDocument doc = new PDDocument();
                  /*
                  crea un nuvo documento
@@ -65,7 +62,7 @@ public class BuscadorDePalabras {
                  PDFTextStripper pdfStripper = new PDFTextStripper();
                  String text = pdfStripper.getText(doc);
                  
-                 if(text.contains(args[1])){
+                 if(text.contains(args[1])){ 
                      nombreArchivo.add(nombre);
                  }   
                  doc.close();
